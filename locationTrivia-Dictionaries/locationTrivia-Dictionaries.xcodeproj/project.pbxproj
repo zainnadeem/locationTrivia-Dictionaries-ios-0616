@@ -19,6 +19,7 @@
 		D8327C811923AADA0077B66A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8327C661923AADA0077B66A /* Foundation.framework */; };
 		D8327C821923AADA0077B66A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8327C6A1923AADA0077B66A /* UIKit.framework */; };
 		D8327C8A1923AADA0077B66A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8327C881923AADA0077B66A /* InfoPlist.strings */; };
+		D8327C961923AC030077B66A /* FISAppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D8327C951923AC030077B66A /* FISAppDelegateSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		D8327C7F1923AADA0077B66A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D8327C871923AADA0077B66A /* locationTrivia-DictionariesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "locationTrivia-DictionariesTests-Info.plist"; sourceTree = "<group>"; };
 		D8327C891923AADA0077B66A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D8327C951923AC030077B66A /* FISAppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISAppDelegateSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		D8327C851923AADA0077B66A /* locationTrivia-DictionariesTests */ = {
 			isa = PBXGroup;
 			children = (
+				D8327C951923AC030077B66A /* FISAppDelegateSpec.m */,
 				D8327C861923AADA0077B66A /* Supporting Files */,
 			);
 			path = "locationTrivia-DictionariesTests";
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8327C961923AC030077B66A /* FISAppDelegateSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
