@@ -2,7 +2,7 @@
 //  FISAppDelegate.m
 //  locationTrivia-Dictionaries
 //
-//  Created by Joe Burgess on 5/14/14.
+//  Created by Joe Burgess on 5/13/14.
 //  Copyright (c) 2014 Joe Burgess. All rights reserved.
 //
 
@@ -16,6 +16,13 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
+    NSDictionary *location =  @{@"name": @"Status of Liberty",
+                                @"longitude": @71.324,
+                                @"latitude": @-31.412};
+    NSLog(@"%@",[self shortenLocationNameWithLocation:location ToCount:3]);
+
+    NSLog(@"%@",[self createLocationWithName:@"Joe" Latitude:@32 Longitude:@43]);
     return YES;
 }
 
@@ -48,6 +55,28 @@
     return resultArray;
 }
 
+- (BOOL) verifyLocation:(NSDictionary *)location
+{
+    if ([location.allKeys count] != 3)
+    {
+        return NO;
+    }
+    if (location[@"name"] && location[@"latitude"] && location[@"longitude"]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (NSDictionary *)searchForLocationName:(NSString *)name inLocations:(NSArray *)locations
+{
+    for (NSDictionary *location in locations) {
+        NSString *locationName = location[@"name"];
+        if ([locationName isEqualToString:name]) {
+            return location;
+        }
+    }
+    return nil;
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
