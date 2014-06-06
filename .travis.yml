@@ -1,0 +1,10 @@
+language: objective-c
+
+before_install:
+  - brew update
+  - brew upgrade xctool
+  
+notifications:
+  webhooks: http://progress.flatironschool.com/submissions
+
+script: xctool -reporter json-stream -workspace locationTrivia-Dictionaries/locationTrivia-Dictionaries.xcworkspace -sdk iphonesimulator -scheme locationTrivia-Dictionaries build test 
