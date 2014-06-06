@@ -34,6 +34,7 @@
     if (count <0) {
         return name;
     }
+    NSLog(@"ASDF");
     return [name substringToIndex:count];
 }
 
