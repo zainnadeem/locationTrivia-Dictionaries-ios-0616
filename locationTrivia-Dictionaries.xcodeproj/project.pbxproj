@@ -33,7 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		171FE768050E4D86AAC2BBEE /* Pods-locationTrivia-DictionariesTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-locationTrivia-DictionariesTests.xcconfig"; path = "Pods/Pods-locationTrivia-DictionariesTests.xcconfig"; sourceTree = "<group>"; };
+		197FC7E2975C50D3BA57515C /* Pods-locationTrivia-DictionariesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-locationTrivia-DictionariesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-locationTrivia-DictionariesTests/Pods-locationTrivia-DictionariesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		336755A09C814FB08498CEDF /* libPods-locationTrivia-DictionariesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-locationTrivia-DictionariesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8327C631923AADA0077B66A /* locationTrivia-Dictionaries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "locationTrivia-Dictionaries.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8327C661923AADA0077B66A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -51,6 +51,7 @@
 		D8327C871923AADA0077B66A /* locationTrivia-DictionariesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "locationTrivia-DictionariesTests-Info.plist"; sourceTree = "<group>"; };
 		D8327C891923AADA0077B66A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8327C951923AC030077B66A /* FISAppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISAppDelegateSpec.m; sourceTree = "<group>"; };
+		F9ED56753699E2F0E095CAA3 /* Pods-locationTrivia-DictionariesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-locationTrivia-DictionariesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-locationTrivia-DictionariesTests/Pods-locationTrivia-DictionariesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +86,7 @@
 				D8327C851923AADA0077B66A /* locationTrivia-DictionariesTests */,
 				D8327C651923AADA0077B66A /* Frameworks */,
 				D8327C641923AADA0077B66A /* Products */,
-				171FE768050E4D86AAC2BBEE /* Pods-locationTrivia-DictionariesTests.xcconfig */,
+				DC81367BD87EB6AB66F6A2B4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +149,15 @@
 				D8327C881923AADA0077B66A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DC81367BD87EB6AB66F6A2B4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				197FC7E2975C50D3BA57515C /* Pods-locationTrivia-DictionariesTests.debug.xcconfig */,
+				F9ED56753699E2F0E095CAA3 /* Pods-locationTrivia-DictionariesTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,7 +281,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-locationTrivia-DictionariesTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-locationTrivia-DictionariesTests/Pods-locationTrivia-DictionariesTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -422,7 +432,7 @@
 		};
 		D8327C931923AADA0077B66A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 171FE768050E4D86AAC2BBEE /* Pods-locationTrivia-DictionariesTests.xcconfig */;
+			baseConfigurationReference = 197FC7E2975C50D3BA57515C /* Pods-locationTrivia-DictionariesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/locationTrivia-Dictionaries.app/locationTrivia-Dictionaries";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -445,7 +455,7 @@
 		};
 		D8327C941923AADA0077B66A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 171FE768050E4D86AAC2BBEE /* Pods-locationTrivia-DictionariesTests.xcconfig */;
+			baseConfigurationReference = F9ED56753699E2F0E095CAA3 /* Pods-locationTrivia-DictionariesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/locationTrivia-Dictionaries.app/locationTrivia-Dictionaries";
 				FRAMEWORK_SEARCH_PATHS = (
