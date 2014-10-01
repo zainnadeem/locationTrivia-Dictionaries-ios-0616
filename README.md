@@ -21,11 +21,10 @@ An app to share the different trivia items of life around you. As users walk aro
   
   2. Write a method that given the location `NSDictionary` and an `NSInteger` character count, will return an `NSString` with the name shortened to that many characters.
   3. Write a method that takes in an `NSString` name, `NSNumber` longitude, and a `NSNumber` latitude and will return an `NSDictionary` formatted correctly.
-  4. Write a method that takes an `NSArray` of `NSDictionary` representations of Locations and returns a list of just the names.
+  4. Write a method that takes an `NSArray` that contains locations `NSDictionary`. Return a list of just the names of the locations.
   5. Write a method that given an `NSDictionary` representation of a location, verifys that everything is filled out. This should be an exact match, so if there are any extra key/value pairs it should still return `NO`. This should return a `BOOL`
   6. Write a method that given an `NSArray` of `NSDictionary` locations and an `NSString` of a location name, checks to see if that Location is in the `NSArray`. If it is, then it returns the `NSDictionary`. If it isn't, it returns nil.
 
   ### Hint
 
   For this lab, you will want to use the method `substringToIndex:`. Look it up on Dash or Google. If you have questions, ask your partner. If you still have questions, come find us.
-  
