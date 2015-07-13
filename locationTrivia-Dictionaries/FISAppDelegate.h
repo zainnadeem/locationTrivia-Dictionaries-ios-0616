@@ -18,18 +18,4 @@
  
  */
 
-- (NSString *)shortenedNameOfLocation:(NSDictionary *)location
-                             toLength:(NSInteger)length;
-
-- (NSDictionary *)dictionaryForLocationWithName:(NSString *)name
-                                       latitude:(NSNumber *)latitude
-                                      longitude:(NSNumber *)longitude;
-
-- (NSArray *)namesOfLocations:(NSArray *)locations;
-
-- (BOOL)dictionaryHasValidLocation:(NSDictionary *)location;
-
-- (NSDictionary *)retrieveLocationByName:(NSString *)name
-                             inLocations:(NSArray *)locations;
-
 @end
