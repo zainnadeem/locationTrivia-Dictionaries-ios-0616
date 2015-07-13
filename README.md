@@ -1,30 +1,46 @@
----
-tags: dictionary, beginner, collections
-language: objc
----
+# Location Trivia
 
-#Location Trivia
+## Objectives
 
-Learn `NSDictionary`s through Locations...and Trivia!
+1. Apply what you've learned about collections to correctly store some real-world information.
+2. Verify that a dictionary contains the expected keys.
+3. Retrieve a stored dictionary by the value for a key.
 
-An app to share the different trivia items of life around you. As users walk around NYC they are notified of nearby trivia items. Users are also able to add trivia facts and tag them to any location nearby. Through this app, we can all be a little bit smarter.
+## Introduction
+
+We're going to work towards building an app to allow users to share trivia facts about locations around the city. As users walk around, they can be notified of nearby trivia items. Before we get to work with trivia, we need to handle the data about nearby locations.
+
+In this exercise, we're going to start by handling some data about a few locations in New York City. We're going to save the location's name, latitude, and longitude as values in a dictionary. In Objective-C, a manual declaration of such a dictionary would look like this:
+
+```objc
+NSDictionary *location1 = @{ @"name"      : @"The Flatiron School",
+                             @"latitude"  : @34.432               ,
+                             @"longitude" : @-23.67               };
+```
 
 ## Instructions
 
-  1. Locations are represented as `NSDictionary` objects. These look something like this.
+Navigate to the `FISAppDelegate.h` header file and declare the following methods. Set them to return `nil` in the `FISAppDelegate.m` implementation file. Run the tests to see that most of them fail.
 
-  ```
-  @{@"name": @"Status of Liberty",
-    @"longitude": @71.324,
-    @"latitude": @-31.412}
-  ```
-  
-  2. Write a method that given the location `NSDictionary` and an `NSInteger` character count, will return an `NSString` with the name shortened to that many characters.
-  3. Write a method that takes in an `NSString` name, `NSNumber` longitude, and a `NSNumber` latitude and will return an `NSDictionary` formatted correctly.
-  4. Write a method that takes an `NSArray` that contains locations `NSDictionary`. Return a list of just the names of the locations.
-  5. Write a method that given an `NSDictionary` representation of a location, verifys that everything is filled out. This should be an exact match, so if there are any extra key/value pairs it should still return `NO`. This should return a `BOOL`
-  6. Write a method that given an `NSArray` of `NSDictionary` locations and an `NSString` of a location name, checks to see if that Location is in the `NSArray`. If it is, then it returns the `NSDictionary`. If it isn't, it returns nil.
+  * `shortenedNameOfLocation:toLength:` that takes two arguments, an `NSDictionary` called `location` and an `NSInteger` called `length`; and returns an `NSString`. 
 
-  ### Hint
+  * `dictionaryForLocationWithName:latitude:longitude:` that takes three arguments, an `NSString` called `name`, and two `NSNumber`s called `latitude` and `longitude`; and returns an `NSDictionary`.
+    
+  * `namesOfLocations:` that takes one `NSArray` argument called `locations` and returns an `NSArray`.
 
-  For this lab, you will want to use the method `substringToIndex:`. Look it up on Dash or Google. If you have questions, ask your partner. If you still have questions, come find us.
+  * `dictionaryHasValidLocation:` that takes one `NSDictionary` argument and returns a `BOOL`.
+
+  * `retrieveLocationByName:inLocations:` that takes two arguments, an `NSString` called `name` and an `NSArray` called `locations`; and returns an `NSDictionary`.
+
+Now, write out the method bodies for each method one by one. Run the tests each time you finish a method to check your work. Reference each of the tests to know what they're expecting.
+
+1. `shortenedNameOfLocation:toLength:` should return a string containing the beginning of the submitted location's name with the number of letters specified in the `length` argument.  
+  **Hint:** *Look up the* `substringToIndex:` *method on* `NSString`.
+2. `dictionaryForLocationWithName:latitude:longitude:` should return a dictionary containing the three argument values stored to keys of the argument names (`@"name"`, `@"latitude"`, `@"longitude"`).
+    
+3. `namesOfLocations:` should return an array containing all of the values for the `name` key in the location dictionaries in the submitted `locations` array.
+
+4. `dictionaryHasValidLocation:` should return `YES` only if the submitted `location` dictionary has exactly three keys by the names of `@"name"`, `@"latitude"`, and `@"longitude"`. If any of these conditions fail, the method should return `NO`.  
+**Advanced:** *Write additional checks to determine that the value for* `latitude` *falls between -90.0 and 90.0, that the value for* `longitude` *falls between 180.0 and -180.0, and that the value for* `name` *is not an empty string. However, there are no tests for these cases.*
+
+5. `retrieveLocationByName:inLocations:` should return the `location` dictionary in the submitted `locations` array with the matching value for the `name` key as the submitted `name` string. If there are no matches, then it should return `nil`.

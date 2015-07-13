@@ -12,10 +12,24 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-- (NSString *)shortenLocationNameWithLocation:(NSDictionary *)location ToCount:(NSInteger)count;
-- (NSDictionary *)createLocationWithName:(NSString *)name Latitude:(NSNumber *)latitude Longitude:(NSNumber *)longitude;
-- (NSArray *)getLocationNamesWithLocations:(NSArray *)locations;
-- (BOOL)verifyLocation:(NSDictionary *)location;
-- (NSDictionary *)searchForLocationName:(NSString *)name inLocations:(NSArray *)locations;
+/**
+ 
+ *  Declare your method names here.
+ 
+ */
+
+- (NSString *)shortenedNameOfLocation:(NSDictionary *)location
+                             toLength:(NSInteger)length;
+
+- (NSDictionary *)dictionaryForLocationWithName:(NSString *)name
+                                       latitude:(NSNumber *)latitude
+                                      longitude:(NSNumber *)longitude;
+
+- (NSArray *)namesOfLocations:(NSArray *)locations;
+
+- (BOOL)dictionaryHasValidLocation:(NSDictionary *)location;
+
+- (NSDictionary *)retrieveLocationByName:(NSString *)name
+                             inLocations:(NSArray *)locations;
 
 @end

@@ -10,66 +10,106 @@
 
 @implementation FISAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
 
-    NSDictionary *location =  @{@"name": @"Status of Liberty",
-                                @"longitude": @71.324,
-                                @"latitude": @-31.412};
-    NSLog(@"%@",[self shortenLocationNameWithLocation:location ToCount:3]);
-
-    NSLog(@"%@",[self createLocationWithName:@"Joe" Latitude:@32 Longitude:@43]);
     return YES;
 }
 
+/** 
+ 
+ *  Write your method implementations here.
+ 
+ */
 
-
-- (NSString *)shortenLocationNameWithLocation:(NSDictionary *)location ToCount:(NSInteger)count
-{
+-(NSString *)shortenedNameOfLocation:(NSDictionary *)location
+                            toLength:(NSInteger)length {
+    
     NSString *name = location[@"name"];
-    if (count <0) {
+    if (length < 0) {
         return name;
     }
-    NSLog(@"ASDF");
-    return [name substringToIndex:count];
+    
+    return [name substringToIndex:length];
+
 }
 
-- (NSDictionary *)createLocationWithName:(NSString *)name Latitude:(NSNumber *)latitude Longitude:(NSNumber *)longitude
-{
-    return @{@"name":name,
-             @"latitude":latitude,
-             @"longitude":longitude};
+- (NSDictionary *)dictionaryForLocationWithName:(NSString *)name
+                                       latitude:(NSNumber *)latitude
+                                      longitude:(NSNumber *)longitude {
+    
+    NSDictionary *location =  @{ @"name"     : name      ,
+                                 @"latitude" : latitude  ,
+                                 @"longitude": longitude };
+    
+    return location;
 }
 
--(NSArray *)getLocationNamesWithLocations:(NSArray *)locations
-{
-    NSMutableArray *resultArray = [[NSMutableArray alloc] init];
+-(NSArray *)namesOfLocations:(NSArray *)locations {
+    
+    NSMutableArray *names = [[NSMutableArray alloc] init];
     for (NSDictionary *location in locations) {
         NSString *name = location[@"name"];
-        [resultArray addObject:name];
+        [names addObject:name];
     }
 
-    return resultArray;
+    return [NSArray arrayWithArray:names];
 }
 
-- (BOOL) verifyLocation:(NSDictionary *)location
-{
-    if ([location.allKeys count] != 3)
-    {
+- (BOOL)dictionaryHasValidLocation:(NSDictionary *)location {
+    
+    if (location.allKeys.count != 3) {
         return NO;
     }
-    if (location[@"name"] && location[@"latitude"] && location[@"longitude"]) {
-        return YES;
+    
+    if (!location[@"name"]) {
+        return NO;
+    } else {
+        // there are no tests for this code, it just feels like good practice
+        if (![location[@"name"] isKindOfClass:[NSString class]]) {
+            return NO;
+        }
+        NSString *name = location[@"name"];
+        if (name.length == 0 ) {
+            return NO;
+        }
+        // end
     }
-    return NO;
+    
+    if (!location[@"latitude"]) {
+        return NO;
+    } else {
+        // there are no tests for this code, it just feels like good practice
+        if (![location[@"latitude"] isKindOfClass:[NSNumber class]]) {
+            return NO;
+        }
+        CGFloat latitude = [location[@"latitude"] floatValue];
+        if (latitude > 90.0 || latitude < -90.0) {
+            return NO;
+        }
+        // end
+    }
+    
+    if (!location[@"longitude"]) {
+        return NO;
+    } else {
+        // there are no tests for this code, it just feels like good practice
+        if (![location[@"longitude"] isKindOfClass:[NSNumber class]]) {
+            return NO;
+        }
+        CGFloat longitude = [location[@"longitude"] floatValue];
+        if (longitude > 180.0 || longitude <= -180.0) {
+            return NO;
+        }
+        // end
+    }
+    
+    return YES;
 }
 
-- (NSDictionary *)searchForLocationName:(NSString *)name inLocations:(NSArray *)locations
-{
+- (NSDictionary *)retrieveLocationByName:(NSString *)name
+                             inLocations:(NSArray *)locations {
+    
     for (NSDictionary *location in locations) {
         NSString *locationName = location[@"name"];
         if ([locationName isEqualToString:name]) {
@@ -77,32 +117,6 @@
         }
     }
     return nil;
-}
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
 @end
