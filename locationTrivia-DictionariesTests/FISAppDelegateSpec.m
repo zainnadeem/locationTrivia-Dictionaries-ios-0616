@@ -18,10 +18,10 @@ describe(@"FISAppDelegate", ^{
     __block FISAppDelegate *appDelegate;
     
     __block NSString *empireStateName;
-    __block NSNumber *empireStateLat;
-    __block NSNumber *empireStateLng;
+    __block CGFloat empireStateLat;
+    __block CGFloat empireStateLng;
     
-    __block NSDictionary *location0;
+    __block NSDictionary *empireState;
     __block NSDictionary *location1;
     __block NSDictionary *location2;
     
@@ -32,13 +32,13 @@ describe(@"FISAppDelegate", ^{
         appDelegate = [[FISAppDelegate alloc] init];
         
         empireStateName = @"Empire State Building";
-        empireStateLat  = @23.432;
-        empireStateLng  = @-34.34;
+        empireStateLat  = 23.432;
+        empireStateLng  = -34.34;
         
-        location0 = @{ @"name"      : empireStateName,
-                       @"latitude"  : empireStateLat ,
-                       @"longitude" : empireStateLng
-                      };
+        empireState = @{ @"name"      : empireStateName,
+                         @"latitude"  : @(empireStateLat) ,
+                         @"longitude" : @(empireStateLng)
+                       };
         
         location1 = @{ @"name"      : @"The Flatiron School",
                        @"latitude"  : @34.432 ,
@@ -50,27 +50,28 @@ describe(@"FISAppDelegate", ^{
                        @"longitude" : @92.42
                       };
         
-        locations = @[ location0, location1, location2 ];
+        locations = @[ empireState, location1, location2 ];
     });
 
-    describe(@"shortenedNameOfLocation:toLength:", ^{
-        it(@"returns an NSString object", ^{
-            expect([appDelegate shortenedNameOfLocation:location1 toLength:5]).to.beKindOf([NSString class]);
-        });
-        
+    describe(@"stringByTruncatingNameOfLocation:toLength:", ^{
         it(@"returns a shortened location name to 3 characters long when submitted a length argument of 3", ^{
-            NSString *shortenedName =[appDelegate shortenedNameOfLocation:location0 toLength:3];
-            expect(shortenedName.length).to.equal(3);
+            NSString *shortenedName =[appDelegate stringByTruncatingNameOfLocation:empireState toLength:3];
+            expect(shortenedName).to.equal(@"Emp");
+        });
+
+        it(@"performs correctly when given a length exactly equal to that of the name", ^{
+            NSString *shortenedName = [appDelegate stringByTruncatingNameOfLocation:empireState toLength:empireStateName.length];
+            expect(shortenedName).to.equal(empireStateName);
         });
 
         it(@"returns a shortened location name to 5 characters long when submitted a length argument of 5", ^{
-            NSString *shortenedName =[appDelegate shortenedNameOfLocation:location0 toLength:5];
-            expect(shortenedName.length).to.equal(5);
+            NSString *shortenedName =[appDelegate stringByTruncatingNameOfLocation:empireState toLength:5];
+            expect(shortenedName).to.equal(@"Empir");
         });
 
-        it(@"returns the original location name when submitted a negative length argument", ^{
-            NSString *shortenedName =[appDelegate shortenedNameOfLocation:location0 toLength:-5];
-            expect(shortenedName).to.equal(location0[@"name"]);
+        it(@"does no truncation or padding when given a length longer than the name", ^{
+            NSString *shortenedName = [appDelegate stringByTruncatingNameOfLocation:empireState toLength:100];
+            expect(shortenedName).to.equal(empireStateName);
         });
     });
 
@@ -81,47 +82,43 @@ describe(@"FISAppDelegate", ^{
 
         it(@"returns a dictionary with the submitted values for the correct keys", ^{
             NSDictionary *newLocation = [appDelegate dictionaryForLocationWithName:empireStateName latitude:empireStateLat longitude:empireStateLng];
-            expect(newLocation).to.equal(location0);
+            expect(newLocation).to.equal(empireState);
         });
     });
 
     describe(@"namesOfLocations:", ^{
-        it(@"returns an NSArray object", ^{
-            expect([appDelegate namesOfLocations:locations]).to.beKindOf([NSArray class]);
-        });
-        
         it(@"returns an array containing the expected three objects", ^{
             NSArray *locationNames = [appDelegate namesOfLocations:locations];
             
             expect(locationNames.count).to.equal(3);
         });
 
-        it(@"returns an array containing all of the expected location names", ^{
+        it(@"returns an array containing all of the expected location names in order", ^{
             NSArray *locationNames = [appDelegate namesOfLocations:locations];
-            
-            expect(locationNames).to.contain(location0[@"name"]);
-            expect(locationNames).to.contain(location1[@"name"]);
-            expect(locationNames).to.contain(location2[@"name"]);
+
+            expect(locationNames[0]).to.equal(empireStateName);
+            expect(locationNames[1]).to.equal(location1[@"name"]);
+            expect(locationNames[2]).to.equal(location2[@"name"]);
         });
     });
 
-    describe(@"dictionaryHasValidLocation:", ^{
+    describe(@"dictionaryIsValidLocation:", ^{
         it(@"returns YES for a correct location", ^{
-            expect([appDelegate dictionaryHasValidLocation:location0]).to.beTruthy();
+            expect([appDelegate dictionaryIsValidLocation:empireState]).to.beTruthy();
         });
 
         it(@"Should return NO for a location with incorrect keys", ^{
             NSDictionary *locationWithBadKeys = @{ @"n4m3"     : @"Atlantis" ,
                                                    @"l0c4710n" : @1          ,
                                                    @"l471700d" : @1          };
-            expect([appDelegate dictionaryHasValidLocation:locationWithBadKeys]).to.beFalsy();
+            expect([appDelegate dictionaryIsValidLocation:locationWithBadKeys]).to.beFalsy();
         });
 
         it(@"Should return NO for a location with not enough keys", ^{
             NSDictionary *locationWithNotEnoughKeys = @{ @"name"    : @"Atlantis" ,
                                                          @"latitude": @1          };
             
-            expect([appDelegate dictionaryHasValidLocation:locationWithNotEnoughKeys]).to.beFalsy();
+            expect([appDelegate dictionaryIsValidLocation:locationWithNotEnoughKeys]).to.beFalsy();
         });
 
         it(@"Should return NO for a location with extra keys", ^{
@@ -129,21 +126,21 @@ describe(@"FISAppDelegate", ^{
                                                        @"latitude"   : @1             ,
                                                        @"longitude"  : @1             ,
                                                        @"trivia"     : @[ @"legend" ] };
-            expect([appDelegate dictionaryHasValidLocation:locationWithTooManyKeys]).to.beFalsy();
+            expect([appDelegate dictionaryIsValidLocation:locationWithTooManyKeys]).to.beFalsy();
         });
     });
 
-    describe(@"retrieveLocationByName:inLocations:", ^{
+    describe(@"locationNamed:inLocations:", ^{
         it(@"returns an NSDictionary object", ^{
-            expect([appDelegate retrieveLocationByName:@"The Flatiron School" inLocations:locations]).to.beKindOf([NSDictionary class]);
+            expect([appDelegate locationNamed:@"The Flatiron School" inLocations:locations]).to.beKindOf([NSDictionary class]);
         });
 
         it(@"returns the correct NSDictionary Location", ^{
-            expect([appDelegate retrieveLocationByName:empireStateName inLocations:locations]).to.equal(location0);
+            expect([appDelegate locationNamed:empireStateName inLocations:locations]).to.equal(empireState);
         });
 
         it(@"returns 'nil' if no location is found with that name", ^{
-            expect([appDelegate retrieveLocationByName:@"Atlantis" inLocations:locations]).to.beNil();
+            expect([appDelegate locationNamed:@"Atlantis" inLocations:locations]).to.beNil();
         });
     });
    
