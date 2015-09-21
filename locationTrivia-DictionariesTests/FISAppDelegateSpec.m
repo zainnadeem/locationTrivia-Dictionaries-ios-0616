@@ -1,10 +1,4 @@
-//
 //  FISAppDelegateSpec.m
-//  locationTrivia-Dictionaries
-//
-//  Created by Joe Burgess on 5/14/14.
-//  Copyright 2014 Joe Burgess. All rights reserved.
-//
 
 #import "Specta.h"
 #define EXP_SHORTHAND
