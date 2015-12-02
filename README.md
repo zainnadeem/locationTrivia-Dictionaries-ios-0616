@@ -44,3 +44,5 @@ Now, write out the method bodies for each method one by one. Run the tests each 
 **Advanced:** *Write additional checks to determine that the value for* `latitude` *falls between -90.0 and 90.0, that the value for* `longitude` *falls between 180.0 and -180.0, and that the value for* `name` *is not an empty string. However, there are no tests for these cases.*
 
 5. `locationNamed:inLocations:` should return the `location` dictionary in the submitted `locations` array with the matching value for the `name` key as the submitted `name` string. If there are no matches, then it should return `nil`.
+
+<a href='https://learn.co/lessons/locationTrivia-Dictionaries' data-visibility='hidden'>View this lesson on Learn.co</a>
