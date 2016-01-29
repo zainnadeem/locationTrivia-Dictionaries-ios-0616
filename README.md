@@ -45,4 +45,4 @@ Now, write out the method bodies for each method one by one. Run the tests each 
 
 5. `locationNamed:inLocations:` should return the `location` dictionary in the submitted `locations` array with the matching value for the `name` key as the submitted `name` string. If there are no matches, then it should return `nil`.
 
-<a href='https://learn.co/lessons/locationTrivia-Dictionaries' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/locationTrivia-Dictionaries' title='Location Trivia'>Location Trivia</a> on Learn.co and start learning to code for free.</p>
